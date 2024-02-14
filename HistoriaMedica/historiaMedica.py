@@ -3,7 +3,7 @@ from paciente.gui import Frame
 
 def main():
     root = tk.Tk()
-    root.title("Registro Médico")
+    root.title("Centro Holístico KURAMA")
     root.resizable(0,0)
 
     frame = Frame(root)
