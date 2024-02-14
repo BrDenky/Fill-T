@@ -354,6 +354,11 @@ class Frame(tk.Frame):
         self.btnHistorialPaciente.config(width=20,font=("Arial",15,"bold"),fg="#DAD5D6",bg="#170095", activebackground="#9379E0",cursor="hand2")
         self.btnHistorialPaciente.grid(row=11, column=2,padx=10,pady=5)
 
+        
+        self.btnHistorialPaciente = tk.Button(self, text="Salir", command=self.root.destroy)
+        self.btnHistorialPaciente.config(width=20,font=("Arial",15,"bold"),fg="#DAD5D6",bg="#770907", cursor="hand2", activebackground="#560605")
+        self.btnHistorialPaciente.grid(row=11, column=4,padx=10,pady=5)
+
     def historiaMedica(self):
 
         try:
