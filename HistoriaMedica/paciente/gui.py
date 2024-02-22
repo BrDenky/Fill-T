@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import Button, ttk, scrolledtext, Toplevel,messagebox, LabelFrame
+from PIL import Image, ImageTk
+
 import sys
 sys.path.append("C:\\Users\\ASUS\\Desktop\\Trax\\Fill-T\\HistoriaMedica\\modelo")
 from pacienteDao import Persona, guardarDatoPaciente, listarPacienteCondicion, listar, editarDatoPaciente, eliminarPaciente
@@ -9,6 +11,7 @@ from historiamedicaDao import historiaMedica, guardarHistoria, listarHistoria, e
 import tkcalendar as tc
 from tkcalendar import *
 from datetime import datetime
+import os
 
 
 class Frame(tk.Frame):
@@ -25,8 +28,26 @@ class Frame(tk.Frame):
         self.camposPaciente()
         self.deshabilitar()
         self.tablaPaciente()
+        self.imagen()
 
-
+    def resource_path(self, relative_path):
+        try:
+            import sys
+            import os
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+        return os.path.join(base_path, relative_path)
+       
+    #INSERTAMOS IMAGEN
+    def imagen(self):
+        img_path = self.resource_path("Logo 1.png")  # Obtener la ruta absoluta de la imagen utilizando resource_path
+        img = Image.open(img_path)
+        render = ImageTk.PhotoImage(img)
+        img1 = Label(self.root, image=render)
+        img1.image = render
+        #img1.resize((279, 248))
+        img1.place(x=885, y=135)
     def camposPaciente(self):
         #LABELS DEL PACIENTE
         self.lblFecha = tk.Label(self, text="Fecha: ")
@@ -155,12 +176,12 @@ class Frame(tk.Frame):
         self.btnBuscarCondicion = tk.Button(self,text="Buscar", command=self.buscarCondicion)
         self.btnBuscarCondicion.config(width=10,font=("Arial",12,"bold"),fg="#DAD5D6",bg="#1658A2", cursor="hand2",
                             activebackground="#41599f")
-        self.btnBuscarCondicion.grid(column=3,row=2,padx=10, pady=5, columnspan=2)
+        self.btnBuscarCondicion.grid(column=3,row=2,padx=10, pady=5, columnspan=1)
 
         self.btnLimpiarBuscador = tk.Button(self,text="Limpiar", command=self.LimpiarBuscador)
         self.btnLimpiarBuscador.config(width=10,font=("Arial",12,"bold"),fg="#DAD5D6",bg="#770907", cursor="hand2",
                             activebackground="#560605")
-        self.btnLimpiarBuscador.grid(column=4,row=2,padx=10, pady=5, columnspan=2)
+        self.btnLimpiarBuscador.grid(column=4,row=2,padx=10, pady=5, columnspan=1)
 
 
         #BOTON CALENDARIO
@@ -245,15 +266,15 @@ class Frame(tk.Frame):
 
     def habilitar(self):
         #self.idPersona == None        
-        self.svFecha.set(" ")
-        self.svNombre.set(" ")
-        self.svApellidoPaterno.set(" ")
-        self.svEdad.set(" ")
-        self.svTelefono.set(" ")
-        self.svDomicilio.set(" ")
-        self.svCi.set(" ")
-        self.svCorreo.set(" ")
-        self.svMotivo.set(" ")
+        self.svFecha.set("")
+        self.svNombre.set("")
+        self.svApellidoPaterno.set("")
+        self.svEdad.set("")
+        self.svTelefono.set("")
+        self.svDomicilio.set("")
+        self.svCi.set("")
+        self.svCorreo.set("")
+        self.svMotivo.set("")
 
         self.entryFecha.config(state="normal")
         self.entryNombre.config(state="normal")
